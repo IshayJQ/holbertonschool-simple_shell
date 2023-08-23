@@ -7,13 +7,13 @@ int main(void)
 	int num_tokens;
 
 	while (1)
-	{
+i	{
 		num_tokens = 0;
 		if (isatty(STDIN_FILENO))
 			printf(" $ ");
 		fflush(stdin);
 		signal(SIGINT, interruptHandler);
-		if (getline(&line, &buffer_size, stdin) == -1)
+		if (getline(&line, &buffer_size, stdin) != EOF)
 		{
 			printf ("INGRESE");
 			if (*line == '\n' || *line == '\t')
