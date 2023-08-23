@@ -3,9 +3,8 @@
 int main(void)
 {
 	char **comand, *token, *line = NULL, *full_path = NULL, *line_copy;
-	pid_t child_pid;
-	size_t i, buffer_size;
-	int status = 0, num_tokens;
+	size_t i, buffer_size = 0;
+	int num_tokens;
 
 	while (1)
 	{
@@ -14,8 +13,9 @@ int main(void)
 			printf(" $ ");
 		fflush(stdin);
 		signal(SIGINT, interruptHandler);
-		if (getline(&line, &buffer_size, stdin) == EOF)
+		if (getline(&line, &buffer_size, stdin) == -1)
 		{
+			printf ("INGRESE");
 			if (*line == '\n' || *line == '\t')
             			continue;
 			line_copy = _malloc(strlen(line));
@@ -33,15 +33,17 @@ int main(void)
 			{
 				comand[i] = _malloc(strlen(token)), strcpy(comand[i], token);
 				token = strtok(NULL, " \t\n");
+				printf ("[%s]", comand[i]);
 			}
 			comand[i] = NULL;
 			full_path = pathfinder(comand[0]);
+			printf ("Path: %s", full_path);
 			exectComand(full_path, comand[0]);
 			line = NULL, token = NULL, comand[0] = NULL;
 		}
 		else
 		{
-			printf("Exit shell...\n"), free(line), free(comand), free(line_copy), exit(status);
+			printf("Exit shell...\n"), free(line), free(comand), free(line_copy);
 			return (0);
 		}
 	}

@@ -8,15 +8,16 @@
 
 int builtin(char *comand)
 {
-	if (compare_strings(comand, "exit", 4) == 0)
+	if (strcmp(comand, "exit") == 0)
 	{
-		free(user_input);
+		free(comand);
 		exit(EXIT_SUCCESS);
 		return (1);
-	} else if (compare_strings(comand,"env", 3) == 0)
+	} 
+	else if (strcmp(comand,"env") == 0)
 	{
 		display_environment_var();
-		free(user_input);
+		free(comand);
 		return (1);
 	} else
 		return (0);
