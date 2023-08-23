@@ -70,12 +70,15 @@ char *pathfinder(char *command)
 
 void exectComand(char *full_path, char *comand)
 {
-	if (builtin(*comand) == 0)
+	pid_t child_pid;
+	int status = 0;
+
+	if (builtin(comand) == 0)
 	{
 		child_pid = fork();
 		if (child_pid == 0)
 		{
-			if (execve(full_path, comand, environ))
+			if (execve(full_path, *comand, environ))
 			perror("execve");
 		}
 		if (child_pid > 0)
@@ -100,4 +103,23 @@ int display_environment_var(void)
 		++i;
 	}
 	return (1);
+}
+
+/**
+ * compare_strings - compare two strings
+ * return - not return
+ */
+
+char compare_strings(char *string1, char *string2, int max_length)
+{
+    	int i = 0;
+
+    	while (i < max_length)
+    	{
+    		if (string1[i] == string2[i])
+    			i++;
+    		else if (string1[i] != string2[i])
+    			return(-1);
+    	}
+    	return (0);
 }

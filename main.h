@@ -11,6 +11,7 @@
 
 char **environ;
 
+char compare_strings(char *string1, char *string2, int max_length)
 int display_environment_var(void);
 char *pathfinder(char *command);
 void *_malloc(unsigned int size);
