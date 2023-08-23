@@ -15,9 +15,9 @@ int main(void)
 		signal(SIGINT, interruptHandler);
 		if (getline(&line, &buffer_size, stdin) != EOF)
 		{
-			printf ("INGRESE");
+			printf("INGRESE");
 			if (*line == '\n' || *line == '\t')
-            			continue;
+				continue;
 			line_copy = _malloc(strlen(line));
 			strcpy(line_copy, line);
 			token = strtok(line_copy, " \t\n");
@@ -33,11 +33,11 @@ int main(void)
 			{
 				comand[i] = _malloc(strlen(token)), strcpy(comand[i], token);
 				token = strtok(NULL, " \t\n");
-				printf ("[%s]", comand[i]);
+				printf("[%s]", comand[i]);
 			}
 			comand[i] = NULL;
 			full_path = pathfinder(comand[0]);
-			printf ("Path: %s", full_path);
+			printf("Path: %s", full_path);
 			execComand(full_path, comand[0]);
 			line = NULL, token = NULL, comand[0] = NULL;
 		}

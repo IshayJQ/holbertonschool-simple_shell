@@ -2,8 +2,8 @@
 
 /**
  * builtin - Funtion that call the env or the exit
- * @command: command a verificar
- * Return: Integer
+ * @comand: command a verificar
+ * Return: return 1 if found exit or env, 0 if not
  */
 
 int builtin(char *comand)
@@ -13,8 +13,8 @@ int builtin(char *comand)
 		free(comand);
 		exit(EXIT_SUCCESS);
 		return (1);
-	} 
-	else if (strcmp(comand,"env") == 0)
+	}
+	else if (strcmp(comand, "env") == 0)
 	{
 		display_environment_var();
 		free(comand);
@@ -22,6 +22,12 @@ int builtin(char *comand)
 	} else
 		return (0);
 }
+
+/**
+ * interruptHandler - interruot the process
+ * @signal: signal
+ * Return: not return
+ */
 
 void interruptHandler(int signal)
 {

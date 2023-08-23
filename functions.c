@@ -21,7 +21,8 @@ void *_malloc(unsigned int size)
 
 /**
  * pathfinder - get the path of the comand
- * Return: the path comand
+ * @command: firts command
+ * Return: the path command
  */
 
 char *pathfinder(char *command)
@@ -36,7 +37,7 @@ char *pathfinder(char *command)
 		path_copy = strdup(path);
 		command_length = strlen(command);
 		path_token = strtok(path_copy, ":");
-		while(path_token != NULL)
+		while (path_token != NULL)
 		{
 			directory_length = strlen(path_token);
 			file_path = malloc(command_length + directory_length + 2);
@@ -64,8 +65,10 @@ char *pathfinder(char *command)
 }
 
 /**
- * exectComand - exect the comand
- * return - not return
+ * execComand - exec the comand
+ * @full_path: path of the command
+ * @comand: firts position of the array of strings
+ * Return: not return
  */
 
 void execComand(char *full_path, char *comand)
@@ -88,7 +91,7 @@ void execComand(char *full_path, char *comand)
 
 /**
  * display_environment_var - display environment
- * return - not return
+ * Return: this return 1 always succes
  */
 
 int display_environment_var(void)
