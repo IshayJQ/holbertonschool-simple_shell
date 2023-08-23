@@ -68,7 +68,7 @@ char *pathfinder(char *command)
  * return - not return
  */
 
-void exectComand(char *full_path, char *comand)
+void execComand(char *full_path, char *comand)
 {
 	pid_t child_pid;
 	int status = 0;
@@ -79,12 +79,11 @@ void exectComand(char *full_path, char *comand)
 		if (child_pid == 0)
 		{
 			if (execve(full_path, &comand, environ))
-			perror("execve");
+				perror("execve"), exit(EXIT_FAILURE);
 		}
 		if (child_pid > 0)
 			wait(&status);
 	}
-	exit(status);
 }
 
 /**

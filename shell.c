@@ -38,7 +38,7 @@ int main(void)
 			comand[i] = NULL;
 			full_path = pathfinder(comand[0]);
 			printf ("Path: %s", full_path);
-			exectComand(full_path, comand[0]);
+			execComand(full_path, comand[0]);
 			line = NULL, token = NULL, comand[0] = NULL;
 		}
 		else

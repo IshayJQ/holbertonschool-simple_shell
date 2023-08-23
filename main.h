@@ -16,6 +16,6 @@ char *pathfinder(char *command);
 void *_malloc(unsigned int size);
 void interruptHandler(int signal);
 int builtin(char *user_input);
-void exectComand(char *full_path, char *comand);
+void execComand(char *full_path, char *comand);
 
 #endif
