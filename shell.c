@@ -7,7 +7,7 @@ int main(void)
 	int num_tokens;
 
 	while (1)
-i	{
+	{
 		num_tokens = 0;
 		if (isatty(STDIN_FILENO))
 			printf(" $ ");
