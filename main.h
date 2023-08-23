@@ -6,5 +6,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-void execmd(char **argv);
-char *get_location(char *command);
+char *pathfinder(char *command);
+void *_malloc(unsigned int size);
+void interruptHandler(int signal);
+int builtin(char *user_input);
