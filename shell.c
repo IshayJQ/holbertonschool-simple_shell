@@ -18,13 +18,11 @@ int main(void)
 		signal(SIGINT, interruptHandler);
 		if (getline(&line, &buffer_size, stdin) != EOF)
 		{
-			printf("---Ingrese--- \n");
 			if (*line == '\n' || *line == '\t')
 				continue;
 			comand = getCommandArray(line);
 			full_path = pathfinder(comand[0]);
-			printf("Path: %s", full_path);
-			execComand(full_path, comand[0]);
+			execComand(full_path, comand);
 			line = NULL;
 			comand = NULL;
 		}

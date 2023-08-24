@@ -71,18 +71,18 @@ char *pathfinder(char *command)
  * Return: not return
  */
 
-void execComand(char *full_path, char *comand)
+void execComand(char *full_path, char **comand)
 {
 	pid_t child_pid;
 	int status = 0;
 
-	if (builtin(comand) == 0)
+	if (builtin(comand[0]) == 0)
 	{
 		child_pid = fork();
 		if (child_pid == 0)
 		{
-			if (execve(full_path, &comand, environ))
-				perror("execve"), exit(EXIT_FAILURE);
+			if (execve(full_path, comand, environ))
+				perror("Error: "), exit(EXIT_FAILURE);
 		}
 		if (child_pid > 0)
 			wait(&status);
@@ -135,7 +135,6 @@ char **getCommandArray(char *line)
 		command[i] = _malloc(strlen(token));
 		strcpy(command[i], token);
 		token = strtok(NULL, " \t\n");
-		printf("[%s]", command[i]);
 	}
 	command[i] = NULL;
 	free(line_copy);
