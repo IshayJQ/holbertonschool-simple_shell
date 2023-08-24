@@ -99,10 +99,8 @@ void display_environment_var(void)
 	char **envvar = environ;
 	int i = 0;
 	
-	printf ("Ingrese a la funcion display_environment_var \n");
 	while (envvar[i])
 	{
-		printf ("Ingrese al print env \n");
 		write(1, envvar[i], strlen(envvar[i]));
 		write(1, "\n", 1);
 		++i;

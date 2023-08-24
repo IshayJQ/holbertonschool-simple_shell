@@ -33,8 +33,6 @@ int main(void)
 			comand = _malloc(num_tokens);
 			comand = getCommandArray(line, comand);
 			full_path = pathfinder(comand[0]);
-			printf ("%s \n", comand[0]);
-			printf ("%s \n", full_path);
 			execComand(full_path, comand);
 			line = NULL, comand = NULL;
 		}
