@@ -34,12 +34,14 @@ int main(void)
 			comand = getCommandArray(line, comand);
 			full_path = pathfinder(comand[0]);
 			execComand(full_path, comand);
-			line = NULL, comand = NULL;
+			line = NULL;
+			free(comand), free(line_copy);
 		}
 		else
 		{
 			free(line), free(comand), free(full_path), free(line_copy);
 			return (0);
 		}
+
 	}
 }
