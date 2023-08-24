@@ -29,7 +29,7 @@ int main(void)
 		else
 		{
 			free(line);
-			free(comand);
+			free(*comand);
 			return (0);
 		}
 	}
