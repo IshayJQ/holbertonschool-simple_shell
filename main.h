@@ -11,6 +11,7 @@
 
 char **environ;
 
+char **getCommandArray(char *line);
 int display_environment_var(void);
 char *pathfinder(char *command);
 void *_malloc(unsigned int size);

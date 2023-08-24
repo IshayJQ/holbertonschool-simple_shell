@@ -1,50 +1,38 @@
 #include "main.h"
 
+/**
+ * main - head of the program
+ * Return: always succes
+ */
+
 int main(void)
 {
-	char **comand, *token, *line = NULL, *full_path = NULL, *line_copy;
-	size_t i, buffer_size = 0;
-	int num_tokens;
+	char **comand, *line = NULL, *full_path = NULL;
+	size_t buffer_size = 0;
 
 	while (1)
 	{
-		num_tokens = 0;
 		if (isatty(STDIN_FILENO))
 			printf(" $ ");
 		fflush(stdin);
 		signal(SIGINT, interruptHandler);
 		if (getline(&line, &buffer_size, stdin) != EOF)
 		{
-			printf("INGRESE");
+			printf("---Ingrese--- \n");
 			if (*line == '\n' || *line == '\t')
 				continue;
-			line_copy = _malloc(strlen(line));
-			strcpy(line_copy, line);
-			token = strtok(line_copy, " \t\n");
-			while (token != NULL)
-			{
-				num_tokens++;
-				token = strtok(NULL, " \t\n");
-			}
-			comand = _malloc(num_tokens);
-			strcpy(line_copy, line);
-			token = strtok(line_copy, " \t\n");
-			for (i = 0; token != NULL; i++)
-			{
-				comand[i] = _malloc(strlen(token)), strcpy(comand[i], token);
-				token = strtok(NULL, " \t\n");
-				printf("[%s]", comand[i]);
-			}
-			comand[i] = NULL;
+			comand = getCommandArray(line);
 			full_path = pathfinder(comand[0]);
 			printf("Path: %s", full_path);
 			execComand(full_path, comand[0]);
-			line = NULL, token = NULL, comand[0] = NULL;
+			line = NULL;
+			comand = NULL;
 		}
 		else
 		{
-			printf("Exit shell...\n"), free(line), free(comand), free(line_copy);
+			printf("Exit shell...\n"), free(line), free(comand);
 			return (0);
 		}
 	}
+	return (0);
 }

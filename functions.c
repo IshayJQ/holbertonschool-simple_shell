@@ -107,3 +107,37 @@ int display_environment_var(void)
 	}
 	return (1);
 }
+
+/**
+ * getCommandArray - get the array of strings
+ * @line: pointer to character input user
+ * Return: the array of strings
+ */
+
+char **getCommandArray(char *line)
+{
+	char **command, *line_copy, *token;
+	int num_tokens = 0, i;
+
+	line_copy = _malloc(strlen(line));
+	strcpy(line_copy, line);
+	token = strtok(line_copy, " \t\n");
+	while (token != NULL)
+	{
+		num_tokens++;
+		token = strtok(NULL, " \t\n");
+	}
+	command = _malloc(num_tokens);
+	strcpy(line_copy, line);
+	token = strtok(line_copy, " \t\n");
+	for (i = 0; token != NULL; i++)
+	{
+		command[i] = _malloc(strlen(token));
+		strcpy(command[i], token);
+		token = strtok(NULL, " \t\n");
+		printf("[%s]", command[i]);
+	}
+	command[i] = NULL;
+	free(line_copy);
+	return (command);
+}
