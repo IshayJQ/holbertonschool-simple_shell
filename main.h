@@ -9,7 +9,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
-char **environ;
+extern char **environ;
 
 char **getCommandArray(char *line, char **command);
 void display_environment_var(void);
