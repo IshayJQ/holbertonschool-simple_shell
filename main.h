@@ -11,8 +11,8 @@
 
 char **environ;
 
-char **getCommandArray(char *line);
-int display_environment_var(void);
+char **getCommandArray(char *line, char **command);
+void display_environment_var(void);
 char *pathfinder(char *command);
 void *_malloc(unsigned int size);
 void interruptHandler(int signal);

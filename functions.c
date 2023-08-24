@@ -91,43 +91,33 @@ void execComand(char *full_path, char **comand)
 
 /**
  * display_environment_var - display environment
- * Return: this return 1 always succes
+ * Return: not return
  */
 
-int display_environment_var(void)
+void display_environment_var(void)
 {
-	char **envvar = environ;
 	int i = 0;
 
-	while (envvar[i])
+	while (environ[i])
 	{
-		write(1, envvar[i], strlen(envvar[i]));
-		write(1, "\n", 1);
-		++i;
+		printf("%s\n", environ[i]);
+		i++;
 	}
-	return (1);
 }
 
 /**
  * getCommandArray - get the array of strings
  * @line: pointer to character input user
+ * @command: array empty of strings
  * Return: the array of strings
  */
 
-char **getCommandArray(char *line)
+char **getCommandArray(char *line, char **command)
 {
-	char **command, **final, *line_copy, *token;
-	int num_tokens = 0, i;
+	char *line_copy, *token;
+	int i;
 
 	line_copy = _malloc(strlen(line));
-	strcpy(line_copy, line);
-	token = strtok(line_copy, " \t\n");
-	while (token != NULL)
-	{
-		num_tokens++;
-		token = strtok(NULL, " \t\n");
-	}
-	command = _malloc(num_tokens);
 	strcpy(line_copy, line);
 	token = strtok(line_copy, " \t\n");
 	for (i = 0; token != NULL; i++)
@@ -137,8 +127,6 @@ char **getCommandArray(char *line)
 		token = strtok(NULL, " \t\n");
 	}
 	command[i] = NULL;
-	final = command;
 	free(line_copy);
-	free(command);
-	return (final);
+	return (command);
 }
