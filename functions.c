@@ -116,7 +116,7 @@ int display_environment_var(void)
 
 char **getCommandArray(char *line)
 {
-	char **command, *line_copy, *token;
+	char **command, **final, *line_copy, *token;
 	int num_tokens = 0, i;
 
 	line_copy = _malloc(strlen(line));
@@ -137,6 +137,8 @@ char **getCommandArray(char *line)
 		token = strtok(NULL, " \t\n");
 	}
 	command[i] = NULL;
+	final = command;
 	free(line_copy);
-	return (command);
+	free(command);
+	return (final);
 }

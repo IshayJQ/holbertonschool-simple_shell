@@ -28,9 +28,10 @@ int main(void)
 		}
 		else
 		{
-			free(line), free(comand);
+			free(line);
+			free(comand);
+			free(full_path);
 			return (0);
 		}
 	}
-	return (0);
 }
