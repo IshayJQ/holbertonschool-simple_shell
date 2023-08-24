@@ -28,7 +28,8 @@ int main(void)
 		}
 		else
 		{
-			printf("Exit shell...\n"), free(line), free(comand);
+			free(line);
+			free(comand);
 			return (0);
 		}
 	}
