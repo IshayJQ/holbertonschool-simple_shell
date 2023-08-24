@@ -7,9 +7,9 @@
 
 int main(void)
 {
-	char **comand, *line = NULL, *full_path = NULL, *line_copy, *token;
+	char *comand[1024], *line = NULL, *full_path = NULL, *token;
 	size_t buffer_size = 0;
-	int num_tokens;
+	int i;
 
 	while (1)
 	{
@@ -17,31 +17,29 @@ int main(void)
 			printf(" $ ");
 		fflush(stdin);
 		signal(SIGINT, interruptHandler);
-		num_tokens = 0;
 		if (getline(&line, &buffer_size, stdin) != EOF)
 		{
 			if (*line == '\n' || *line == '\t')
 				continue;
-			line_copy = _malloc(strlen(line));
-			strcpy(line_copy, line);
-			token = strtok(line_copy, " \t\n");
-			while (token != NULL)
+			token = strtok(line, " \t\n");
+			for (i = 0; i < 1024 && token != NULL; i++)
 			{
-				num_tokens++;
+				comand[i] = token;
 				token = strtok(NULL, " \t\n");
 			}
-			comand = _malloc(num_tokens);
-			comand = getCommandArray(line, comand);
+			comand[i] = NULL;
+			if (comand[0] == NULL)
+				continue;
 			full_path = pathfinder(comand[0]);
 			execComand(full_path, comand);
 			line = NULL;
-			free(comand), free(line_copy);
 		}
 		else
 		{
-			free(line), free(comand), free(full_path), free(line_copy);
+			free(line);
 			return (0);
 		}
-
 	}
+	free(line), free(comand), free(full_path);
+	return (0);
 }
