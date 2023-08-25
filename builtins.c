@@ -6,18 +6,22 @@
  * Return: return 1 if found exit or env, 0 if not
  */
 
-int builtin(char *comand)
+int builtin(char **comand)
 {
-	if (strcmp(comand, "exit") == 0)
+	int i;
+
+	if (strcmp(comand[0], "exit") == 0)
 	{
-		free(comand);
+		for (i = 0; comand[i] != NULL; i++)
+			free(comand[i]);
 		exit(EXIT_SUCCESS);
 		return (1);
 	}
-	else if (strcmp(comand, "env") == 0)
+	else if (strcmp(comand[0], "env") == 0)
 	{
 		display_environment_var();
-		free(comand);
+		for (i = 0; comand[i] != NULL; i++)
+			free(comand[i]);
 		return (1);
 	} else
 		return (0);

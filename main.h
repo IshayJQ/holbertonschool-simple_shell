@@ -15,7 +15,7 @@ void trim(char *str);
 void display_environment_var(void);
 char *pathfinder(char *command);
 void interruptHandler(int signal);
-int builtin(char *user_input);
+int builtin(char **comand);
 void execComand(char *full_path, char **comand);
 
 #endif

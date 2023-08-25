@@ -57,7 +57,7 @@ void execComand(char *full_path, char **comand)
 	pid_t child_pid;
 	int status = 0;
 
-	if (builtin(comand[0]) == 0)
+	if (builtin(comand) == 0)
 	{
 		child_pid = fork();
 		if (child_pid == 0)

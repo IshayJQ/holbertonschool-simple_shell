@@ -30,7 +30,12 @@ int main(void)
 			}
 			comand[i] = NULL;
 			if (comand[0] == NULL)
+			{
+				free(line);
+				for (i = 0; comand[i] != NULL; i++)
+					free(comand[i]);
 				continue;
+			}
 			full_path = pathfinder(comand[0]);
 			execComand(full_path, comand);
 			line = NULL;
@@ -42,9 +47,8 @@ int main(void)
 			return (0);
 		}
 	}
-	free(line);
 	for (i = 0; comand[i] != NULL; i++)
 		free(comand[i]);
-	free(full_path);
+	free(line), free(full_path);
 	return (0);
 }
