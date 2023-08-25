@@ -11,6 +11,7 @@
 
 extern char **environ;
 
+void trim(char *str);
 void display_environment_var(void);
 char *pathfinder(char *command);
 void interruptHandler(int signal);

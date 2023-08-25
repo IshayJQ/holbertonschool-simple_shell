@@ -87,3 +87,32 @@ void display_environment_var(void)
 		++i;
 	}
 }
+
+/**
+ * trim - verify the posible space in the input
+ * @str: line input
+ */
+
+void trim(char *str)
+{
+	int start = 0, end = strlen(str) - 1;
+	int i, j;
+
+	/* Buscar el primer índice no espaciado */
+	while (str[start] != '\0' && (str[start] == ' ' || str[start] == '\t'))
+	{
+		start++;
+	}
+	/* Buscar el último índice no espaciado */
+	while (end >= 0 && (str[end] == ' ' || str[end] == '\t' || str[end] == '\n'))
+	{
+		end--;
+	}
+	/* Copiar los caracteres no espaciados al principio de la cadena */
+	for (i = start, j = 0; i <= end; i++, j++)
+	{
+		str[j] = str[i];
+	}
+	/* Agregar el carácter nulo al final*/
+	str[j] = '\0';
+}
