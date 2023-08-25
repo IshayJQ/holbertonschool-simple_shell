@@ -11,7 +11,6 @@ int builtin(char *comand)
 	if (strcmp(comand, "exit") == 0)
 	{
 		free(comand);
-		display_environment_var();
 		exit(EXIT_SUCCESS);
 		return (1);
 	}
