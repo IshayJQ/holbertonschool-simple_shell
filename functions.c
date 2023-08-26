@@ -60,18 +60,13 @@ void execComand(char *full_path, char **comand)
 	if (builtin(comand) == 0)
 	{
 		child_pid = fork();
-		printf("Child process: %u\n", child_pid);
 		if (child_pid == 0)
 		{
-			printf("Ejecutando comando \n");
-			if (execve(full_path, comand, environ))
-				perror("Error: "), exit(EXIT_FAILURE);
+			if (execve(full_path, comand, environ) == -1)
+				perror("Command not found "), exit(EXIT_FAILURE);
 		}
 		if (child_pid > 0)
-		{
-			printf("Liberando proceso hijo \n");
 			wait(&status);
-		}
 	}
 }
 

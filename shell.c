@@ -31,9 +31,7 @@ int main(void)
 			}
 			comand[i] = NULL;
 			full_path = pathfinder(comand[0]);
-			printf("%s \n", full_path);
 			execComand(full_path, comand);
-			printf("Comando ejecutado \n");
 		}
 		else
 		{
