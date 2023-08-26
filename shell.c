@@ -32,6 +32,7 @@ int main(void)
 			comand[i] = NULL;
 			full_path = pathfinder(comand[0]);
 			execComand(full_path, comand);
+			free(full_path);
 		}
 		else
 		{
